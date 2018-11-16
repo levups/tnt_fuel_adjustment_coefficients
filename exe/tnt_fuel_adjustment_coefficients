@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'tnt_fuel_adjustment_coefficients'
+
+tnt = TntFuelAdjustmentCoefficients.new
+puts "# Fuel multipliers for #{tnt.time_period}"
+puts "# Fetched from #{tnt.url}"
+puts
+puts "AIR_FUEL_MULTIPLIER  = #{format '%.4f', tnt.air_multiplier}"
+puts "ROAD_FUEL_MULTIPLIER = #{format '%.4f', tnt.road_multiplier}"
