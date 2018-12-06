@@ -35,6 +35,28 @@ class TnTFuelAdjustmentCoefficientsTest < Minitest::Test
     end
   end
 
+  FRENCH_MONTHS = %w[janvier février mars avril mai juin juillet août
+                     septembre octobre novembre décembre].freeze
+
+  def test_live_values
+    skip if ENV["SKIP_LIVE_TESTS"]
+
+    @adjustement_coefficient = TntFuelAdjustmentCoefficients.new
+
+    time_period   = @adjustement_coefficient.time_period
+    current_month = FRENCH_MONTHS[Date.today.month - 1]
+
+    assert_kind_of String, time_period
+    assert time_period.downcase.start_with?(current_month)
+    assert time_period.end_with?(Date.today.year.to_s)
+
+    assert_kind_of BigDecimal, @adjustement_coefficient.air_multiplier
+    assert_operator @adjustement_coefficient.air_multiplier, :>=, 1.0
+
+    assert_kind_of BigDecimal, @adjustement_coefficient.road_multiplier
+    assert_operator @adjustement_coefficient.road_multiplier, :>=, 1.0
+  end
+
   private
 
   # HTTP would return arrays of unfreeze string so here we have to emulate it
