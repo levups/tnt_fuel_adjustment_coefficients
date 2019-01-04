@@ -1,3 +1,7 @@
+# !!! This gem is not maintened anymore !!!
+
+Replaced by [fuel_surcharge](https://github.com/levups/fuel_surcharge), which handle more transporters.
+
 # TNT Fuel Adjustment Coefficients fetcher
 
 Retrieve current air and road rates applied to TNT shipping costs and
